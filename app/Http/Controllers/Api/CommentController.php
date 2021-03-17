@@ -20,7 +20,7 @@ class CommentController extends Controller
             $prim_comments[$key]['created_at'] = $date->format('F j, Y g:i a');
 
             // get all nested comments
-            $sec_comments = Comments::orderBy('created_at', 'DESC')->where('parent_comment_id', $value['id'])->get()->toArray();
+            $sec_comments = Comments::where('parent_comment_id', $value['id'])->get()->toArray();
             if ($sec_comments) {
                 foreach ($sec_comments as $key2 => $value2) {
                     // format date
